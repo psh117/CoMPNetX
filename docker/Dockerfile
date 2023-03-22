@@ -86,7 +86,7 @@ RUN wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-L
     chmod +x /usr/local/src/miniconda.sh && \
     /usr/local/src/miniconda.sh -b -p /opt/conda && \
     rm /usr/local/src/miniconda.sh && \
-    /opt/conda/bin/conda install -y python=3 conda-build && \
+    /opt/conda/bin/conda install -y python=3.8 conda-build && \
     /opt/conda/bin/conda clean -ya && \
     chmod -R ugo+rw /opt/conda/
 ENV PATH /opt/conda/bin:$PATH
@@ -123,10 +123,11 @@ RUN rosdep update && \
     git clone --depth 1 --branch kinetic-devel https://github.com/ros-planning/srdfdom.git && \
     git clone --depth 1 --branch kinetic_fixes https://github.com/personalrobotics/or_urdf.git && \
     git clone --depth 1 https://github.com/personalrobotics/openrave_catkin.git && \
-    git clone --depth 1 https://github.com/ros/urdfdom.git && \
+    git clone --depth 1 --branch 0.4.2 https://github.com/ros/urdfdom.git && \
     cd /home/compnetx/catkin_ws && \
     catkin_make
 # install pytorch
 RUN conda init
-RUN pip3 install --no-cache-dir torch torchvision torchaudio pyyaml h5py numpy tensorboard
-RUN pip2 install --no-cache-dir pyyaml tqdm future
+RUN pip3 install --no-cache-dir torch==1.8.1+cu102 torchvision torchaudio  -f https://download.pytorch.org/whl/torch/
+RUN pip3 install --no-cache-dir pyyaml h5py numpy tensorboard
+RUN pip2 install --no-cache-dir pyyaml==5.4.1 tqdm future
