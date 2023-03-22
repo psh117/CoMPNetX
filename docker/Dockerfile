@@ -130,4 +130,4 @@ RUN rosdep update && \
 RUN conda init
 RUN pip3 install --no-cache-dir torch==1.8.1+cu102 torchvision torchaudio  -f https://download.pytorch.org/whl/torch/
 RUN pip3 install --no-cache-dir pyyaml h5py numpy tensorboard
-RUN pip2 install --no-cache-dir pyyaml==5.4.1 tqdm future
+RUN pip2 install --no-cache-dir pyyaml==5.4.1 tqdm==4.61.1 future
