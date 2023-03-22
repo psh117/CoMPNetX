@@ -57,7 +57,7 @@ CoMPNetX::MPNetWithoutTSRSampler::MPNetWithoutTSRSampler(const ompl::base::State
     space_dim_ = space_->getDimension();
     pnet_dim_ = dof_robot_;
 
-    auto bound = space->as<ompl::base::RealVectorStateSpace>()->getBounds();
+    auto bound = space->as<ompl::base::ConstrainedStateSpace>()->getSpace()->as<ompl::base::RealVectorStateSpace>()->getBounds();
     upper_limits_ = bound.high;
     lower_limits_ = bound.low;
     scale_factor_ = std::vector<double>{6.1083, 2.668, 3.4033, 3.194, 6.118, 3.6647, 6.118, 3.6086, 2.62952, 2.0635998, 6.284, 6.284, 6.284};
